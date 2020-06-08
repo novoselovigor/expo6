@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta property="og:image" content="preview.jpg">
+		<style type="text/css" title="Default">
+			/* fullscreen */
+			html {
+				height:100%;
+			}
+			body {
+				height:100%;
+				margin: 0px;
+				overflow:hidden; /* disable scrollbars */
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* remove highlight on tab for iOS/Android */
+			}
+			/* fix for scroll bars on webkit & >=Mac OS X Lion */ 
+			::-webkit-scrollbar {
+				background-color: rgba(0,0,0,0.5);
+				width: 0.75em;
+			}
+			::-webkit-scrollbar-thumb {
+    			background-color:  rgba(255,255,255,0.5);
+			}
+		</style>	
+	</head>
+	<body>
+<!-- - - - - - - 8<- - - - - - cut here - - - - - 8<- - - - - - - -->
+		<script type="text/javascript" src="pano2vr_player.js">
+		</script>
+		<script type="text/javascript" src="skin.js">
+		</script>
+		<script src="webxr/three.min.js"></script>
+		<script src="webxr/webxr-polyfill.min.js"></script>
+		<div id="container" style="width:100%;height:100%;overflow:hidden;">
+		<br>Loading...<br><br>
+		</div>
+		<script type="text/javascript">
+	
+			// create the panorama player with the container
+			pano=new pano2vrPlayer("container");
+			// add the skin object
+			skin=new pano2vrSkin(pano);
+			// load the configuration
+			panorama='<?xml version="1.0" encoding="UTF-8"?>';
+			panorama+='<tour appversion="6.1.6" apprev="17950" start="node4">';
+			panorama+='  <panorama hideabout="1" id="node4">';
+			panorama+='    <input levelbiashidpi="1.000" leveltileurl="tiles/node4/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2048" overlap="1" levelbias="0.400" levelingroll="0" levelingpitch="0" leveltilesize="510" height="2048">';
+			panorama+='      <level preload="0" width="2048" predecode="0" height="2048"/>';
+			panorama+='      <level preload="0" width="1024" predecode="0" height="1024"/>';
+			panorama+='      <level preload="0" width="512" predecode="0" height="512"/>';
+			panorama+='      <level preload="1" width="256" predecode="1" height="256"/>';
+			panorama+='      <preview strip="1" color="0x808080"/>';
+			panorama+='    </input>';
+			panorama+='    <view pannorth="0" fovmode="0">';
+			panorama+='      <start tilt="0" pan="0" projection="4" fov="70"/>';
+			panorama+='      <flyin tilt="-90" pan="0" projection="9" fov="170"/>';
+			panorama+='      <min tilt="-37.4" pan="-77.6" fovpixel="2"/>';
+			panorama+='      <max fovfisheye="360" tilt="32.6" pan="81.1" fov="120" fovstereographic="270" scaletofit="1"/>';
+			panorama+='    </view>';
+			panorama+='    <userdata comment="" tags="Desktop" heading="0" nodeid="node4" author="" longitude="" info="" copyright="" source="" customnodeid="" title="station3 - Messestand" latitude="" datetime="" description=""/>';
+			panorama+='    <hotspots wordwrap="1" width="180" height="20">';
+			panorama+='      <label backgroundcolor="0xffffff" border="1" borderradius="1" wordwrap="1" bordercolor="0x000000" enabled="1" width="180" textcolor="0x000000" background="1" backgroundalpha="1" borderalpha="1" height="20" textalpha="1"/>';
+			panorama+='      <polystyle backgroundcolor="0x0000ff" bordercolor="0x0000ff" backgroundalpha="0.25098" handcursor="1" mode="0" borderalpha="1"/>';
+			panorama+='      <hotspot skinid="welcome" tilt="-13.52" pan="11.24" url="" title="Willkommen!" target="" id="Point01" description="Hallo und herzlich Willkommen auf unserem virtuellen Messestand!&#xa;&#xa;Ich bin Ihre Ansprechpartnerin Julia bei station3.&#xa;&#xa;Wenn Sie Fragen zu einem unserer Produkte oder zu unseren Dienstleistungen haben, k&#246;nnen Sie mich gerne kontaktieren unter 0178178187 /  julia@station3.de.&#xa;&#xa;Ich w&#252;nsche Ihnen viel Vergn&#252;gen bei Ihrem Rundgang!"/>';
+			panorama+='    </hotspots>';
+			panorama+='    <media/>';
+			panorama+='    <transition type="crossdissolve" zoomoutpause="1" zoomin="0" blendtime="1" zoomspeed="1" enabled="1" softedge="0" blendcolor="0x000000" zoomfov="20" zoomout="0"/>';
+			panorama+='    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>';
+			panorama+='    <control lockedkeyboard="0" lockedwheel="0" contextfullscreen="1" invertcontrol="1" simulatemass="1" contextprojections="0" rubberband="1" speedwheel="1" lockedkeyboardzoom="0" invertwheel="0" dblclickfullscreen="0" hideabout="1" lockedmouse="0" sensitivity="8"/>';
+			panorama+='  </panorama>';
+			panorama+='  <panorama hideabout="1" id="node1">';
+			panorama+='    <input levelbiashidpi="1.000" leveltileurl="tiles/node1/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2048" overlap="1" levelbias="0.400" levelingroll="0" levelingpitch="0" leveltilesize="510" height="2048">';
+			panorama+='      <level preload="0" width="2048" predecode="0" height="2048"/>';
+			panorama+='      <level preload="0" width="1024" predecode="0" height="1024"/>';
+			panorama+='      <level preload="0" width="512" predecode="0" height="512"/>';
+			panorama+='      <level preload="1" width="256" predecode="1" height="256"/>';
+			panorama+='      <preview strip="1" color="0x808080"/>';
+			panorama+='    </input>';
+			panorama+='    <view pannorth="0" fovmode="0">';
+			panorama+='      <start tilt="0" pan="0" projection="4" fov="70"/>';
+			panorama+='      <flyin tilt="-90" pan="0" projection="9" fov="170"/>';
+			panorama+='      <min tilt="-90" pan="0" fovpixel="2"/>';
+			panorama+='      <max fovfisheye="360" tilt="90" pan="360" fov="120" fovstereographic="270" scaletofit="1"/>';
+			panorama+='    </view>';
+			panorama+='    <userdata comment="" tags="Desktop" heading="0" nodeid="node1" author="" longitude="" info="" copyright="" source="" customnodeid="" title="" latitude="" datetime="" description=""/>';
+			panorama+='    <hotspots wordwrap="1" width="180" height="20">';
+			panorama+='      <label backgroundcolor="0xffffff" border="1" borderradius="1" wordwrap="1" bordercolor="0x000000" enabled="1" width="180" textcolor="0x000000" background="1" backgroundalpha="1" borderalpha="1" height="20" textalpha="1"/>';
+			panorama+='      <polystyle backgroundcolor="0x0000ff" bordercolor="0x0000ff" backgroundalpha="0.25098" handcursor="1" mode="0" borderalpha="1"/>';
+			panorama+='      <hotspot skinid="ht_node_1" tilt="-3.57" pan="-336.11" url="{node2}" title="" target="" id="Produkt 1" description=""/>';
+			panorama+='      <hotspot skinid="ht_node_1" tilt="-0.82" pan="-9.9" url="{node2}" title="" target="" id="Produkt" description=""/>';
+			panorama+='    </hotspots>';
+			panorama+='    <media/>';
+			panorama+='    <transition type="crossdissolve" zoomoutpause="1" zoomin="0" blendtime="1" zoomspeed="1" enabled="1" softedge="0" blendcolor="0x000000" zoomfov="20" zoomout="0"/>';
+			panorama+='    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>';
+			panorama+='    <control lockedkeyboard="0" lockedwheel="0" contextfullscreen="1" invertcontrol="1" simulatemass="1" contextprojections="0" rubberband="1" speedwheel="1" lockedkeyboardzoom="0" invertwheel="0" dblclickfullscreen="0" hideabout="1" lockedmouse="0" sensitivity="8"/>';
+			panorama+='  </panorama>';
+			panorama+='  <panorama hideabout="1" id="node2">';
+			panorama+='    <input levelbiashidpi="1.000" leveltileurl="tiles/node2/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2048" overlap="1" levelbias="0.400" levelingroll="0" levelingpitch="0" leveltilesize="510" height="2048">';
+			panorama+='      <level preload="0" width="2048" predecode="0" height="2048"/>';
+			panorama+='      <level preload="0" width="1024" predecode="0" height="1024"/>';
+			panorama+='      <level preload="0" width="512" predecode="0" height="512"/>';
+			panorama+='      <level preload="1" width="256" predecode="1" height="256"/>';
+			panorama+='      <preview strip="1" color="0x808080"/>';
+			panorama+='    </input>';
+			panorama+='    <view pannorth="0" fovmode="0">';
+			panorama+='      <start tilt="0" pan="0" projection="4" fov="70"/>';
+			panorama+='      <flyin tilt="-90" pan="0" projection="9" fov="170"/>';
+			panorama+='      <min tilt="-90" pan="0" fovpixel="2"/>';
+			panorama+='      <max fovfisheye="360" tilt="90" pan="360" fov="120" fovstereographic="270" scaletofit="1"/>';
+			panorama+='    </view>';
+			panorama+='    <userdata comment="" tags="Desktop" heading="0" nodeid="node2" author="" longitude="" info="" copyright="" source="" customnodeid="" title="" latitude="" datetime="" description=""/>';
+			panorama+='    <hotspots wordwrap="1" width="180" height="20">';
+			panorama+='      <label backgroundcolor="0xffffff" border="1" borderradius="1" wordwrap="1" bordercolor="0x000000" enabled="1" width="180" textcolor="0x000000" background="1" backgroundalpha="1" borderalpha="1" height="20" textalpha="1"/>';
+			panorama+='      <polystyle backgroundcolor="0x0000ff" bordercolor="0x0000ff" backgroundalpha="0.25098" handcursor="1" mode="0" borderalpha="1"/>';
+			panorama+='      <hotspot skinid="ht_node_1" tilt="1.73" pan="-112.57" url="{node1}" title="Willkommen" target="" id="Point01" description=""/>';
+			panorama+='      <hotspot skinid="ht_video_file" tilt="-7.47" pan="-265.37" url="media/REEL-Comb-2.mp4" title="Showreel" target="" id="Showreel" description=""/>';
+			panorama+='      <hotspot skinid="ht_node_1" tilt="9.05" pan="-349.56" url="{node3}" title="" target="" id="Point02" description=""/>';
+			panorama+='      <hotspot skinid="ht_url" tilt="-26.38" pan="-271.72" url="https://www.basis-station.de/pdf" title="PDF" target="_blank" id="Point03" description="https://www.basis-station.de/pdf"/>';
+			panorama+='      <hotspot skinid="ht_chat" tilt="-13.18" pan="-350.9" url="" title="Chat mit Uns" target="_blank" id="Point04" description=""/>';
+			panorama+='      <hotspot skinid="ht_info" tilt="-25.43" pan="-254.55" url="" title="Info" target="_blank" id="Point05" description="station3GmbH - die innovative Agentur, die gerne Gro&#223;esbewegt. Und Kunden aus diversen Branchen vertrauen auf uns: Als Lead-Agentur betreuen wir den Digital-Etat von Mercedes-Benz Own Retail Deutschland f&#252;r Transporter und Vans. Ganz egal, ob Webdesign oder -entwicklung, digitales Kampagnenmanagement oder CRM &#8211; die Marke liegt uns sehr und wir freuen uns &#252;ber viele spannende und zukunftsweisende Projekte. Aber auch im Immobiliensektor haben wir uns zu Experten entwickelt. Von Markenbildung bis hin zu innovativen Vertriebsstrategien unterst&#252;tzen wir unsere Kunden und verschaffen ihnen immer den bestm&#246;glichen Auftritt.&#xa;&#xa;Fernab von Automotive und Real Estate freuen wir uns sehr &#252;ber die &#xa;Zusammenarbeit mit dem Bistum Aachen und dem Nell-Breuning-Haus. Nach zwei gewonnenen Ausschreibungen erarbeiten wir umfangreiche Kommunikationsstrategien, die sich um die Themen &#8222;Bek&#228;mpfung von Sexismus in Unternehmen&#8220; und &#8222;Pr&#228;vention von Radikalisierung bei der Bundeswehr&#8220; drehen. Eine sehr anspruchsvolle und tolle Aufgabe!"/>';
+			panorama+='    </hotspots>';
+			panorama+='    <media>';
+			panorama+='      <lensflare alpha="80.000" type="2" tilt="39.520" pan="-17.660" color="0xffffff" blinding="50.000" id="Lensflare02"/>';
+			panorama+='    </media>';
+			panorama+='    <transition type="crossdissolve" zoomoutpause="1" zoomin="0" blendtime="1" zoomspeed="1" enabled="1" softedge="0" blendcolor="0x000000" zoomfov="20" zoomout="0"/>';
+			panorama+='    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0">';
+			panorama+='      <clip length="150" nextclipnodeid="node2" nextclipstartview="88.7061/2.24403/70/4" nodeid="" nextcliptitle="Clip01" transitiontype="0" animtype="0" animtitle="Animation01" cliptitle="Clip01">';
+			panorama+='        <keyframe time="0" property="0" type="0" value="88.7061" transitiontime="0" valuestring="" additionaltrackid=""/>';
+			panorama+='        <keyframe time="0" property="1" type="0" value="2.24403" transitiontime="0" valuestring="" additionaltrackid=""/>';
+			panorama+='        <keyframe time="0" property="2" type="0" value="70" transitiontime="0" valuestring="" additionaltrackid=""/>';
+			panorama+='        <keyframe time="0" property="3" type="0" value="4" transitiontime="0" valuestring="" additionaltrackid=""/>';
+			panorama+='        <keyframe time="50" property="0" type="2" value="57.6722" transitiontime="0" bezieroutvalue="25.9609" bezierintime="36.4611" valuestring="" bezierouttime="62.7778" bezierinvalue="91.2722" additionaltrackid=""/>';
+			panorama+='        <keyframe time="50" property="1" type="2" value="-25.8171" transitiontime="0" bezieroutvalue="-37.2746" bezierintime="34.7185" valuestring="" bezierouttime="62.6452" bezierinvalue="-11.9709" additionaltrackid=""/>';
+			panorama+='        <keyframe time="50" property="2" type="2" value="70" transitiontime="0" bezieroutvalue="70" bezierintime="35" valuestring="" bezierouttime="62.9" bezierinvalue="70" additionaltrackid=""/>';
+			panorama+='        <keyframe time="150" property="0" type="2" value="-114.549" transitiontime="0" bezieroutvalue="-114.549" bezierintime="135" valuestring="" bezierouttime="10150" bezierinvalue="-114.549" additionaltrackid=""/>';
+			panorama+='        <keyframe time="150" property="1" type="2" value="0.28623" transitiontime="0" bezieroutvalue="0.28623" bezierintime="135" valuestring="" bezierouttime="10150" bezierinvalue="0.28623" additionaltrackid=""/>';
+			panorama+='        <keyframe time="150" property="2" type="2" value="70" transitiontime="0" bezieroutvalue="70" bezierintime="135" valuestring="" bezierouttime="10150" bezierinvalue="70" additionaltrackid=""/>';
+			panorama+='        <keyframe time="93" property="0" type="2" value="-24.0659" transitiontime="0" bezieroutvalue="-65.8832" bezierintime="82.3056" valuestring="" bezierouttime="109.94" bezierinvalue="2.33409" additionaltrackid=""/>';
+			panorama+='        <keyframe time="93" property="1" type="2" value="28.3809" transitiontime="0" bezieroutvalue="37.7354" bezierintime="79.8928" valuestring="" bezierouttime="109.973" bezierinvalue="21.1568" additionaltrackid=""/>';
+			panorama+='        <keyframe time="93" property="2" type="2" value="88.6" transitiontime="0" bezieroutvalue="100.02" bezierintime="80.563" valuestring="" bezierouttime="109.909" bezierinvalue="80.2" additionaltrackid=""/>';
+			panorama+='      </clip>';
+			panorama+='    </animation>';
+			panorama+='    <control lockedkeyboard="0" lockedwheel="0" contextfullscreen="1" invertcontrol="1" simulatemass="1" contextprojections="0" rubberband="1" speedwheel="1" lockedkeyboardzoom="0" invertwheel="0" dblclickfullscreen="0" hideabout="1" lockedmouse="0" sensitivity="8"/>';
+			panorama+='  </panorama>';
+			panorama+='  <panorama hideabout="1" id="node3">';
+			panorama+='    <input levelbiashidpi="1.000" leveltileurl="tiles/node3/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2048" overlap="1" levelbias="0.400" levelingroll="0" levelingpitch="0" leveltilesize="510" height="2048">';
+			panorama+='      <level preload="0" width="2048" predecode="0" height="2048"/>';
+			panorama+='      <level preload="0" width="1024" predecode="0" height="1024"/>';
+			panorama+='      <level preload="0" width="512" predecode="0" height="512"/>';
+			panorama+='      <level preload="1" width="256" predecode="1" height="256"/>';
+			panorama+='      <preview strip="1" color="0x808080"/>';
+			panorama+='    </input>';
+			panorama+='    <view pannorth="0" fovmode="0">';
+			panorama+='      <start tilt="0" pan="0" projection="4" fov="70"/>';
+			panorama+='      <flyin tilt="-90" pan="0" projection="9" fov="170"/>';
+			panorama+='      <min tilt="-90" pan="0" fovpixel="1"/>';
+			panorama+='      <max fovfisheye="360" tilt="90" pan="360" fov="120" fovstereographic="270" scaletofit="1"/>';
+			panorama+='    </view>';
+			panorama+='    <userdata comment="" tags="Desktop" heading="0" nodeid="node3" author="" longitude="" info="" copyright="" source="" customnodeid="" title="" latitude="" datetime="" description=""/>';
+			panorama+='    <hotspots wordwrap="1" width="180" height="20">';
+			panorama+='      <label backgroundcolor="0xffffff" border="1" borderradius="1" wordwrap="1" bordercolor="0x000000" enabled="1" width="180" textcolor="0x000000" background="1" backgroundalpha="1" borderalpha="1" height="20" textalpha="1"/>';
+			panorama+='      <polystyle backgroundcolor="0x0000ff" bordercolor="0x0000ff" backgroundalpha="0.25098" handcursor="1" mode="0" borderalpha="1"/>';
+			panorama+='      <hotspot skinid="ht_node_1" tilt="1.55" pan="-102.92" url="{node1}" title="" target="" id="Point01" description=""/>';
+			panorama+='      <hotspot skinid="ht_player" tilt="4.91" pan="-353.41" url="" title="" target="_blank" id="Demo" description=""/>';
+			panorama+='      <hotspot skinid="ht_info" tilt="-25.36" pan="-291.21" url="" title="Info" target="_blank" id="Point05" description="station3GmbH - die innovative Agentur ,die gerne Gro&#223;esbewegt. Und Kunden aus diversen Branchen vertrauen auf uns: Als Lead-Agentur betreuen wir den Digital-Etat von Mercedes-Benz Own Retail Deutschland f&#252;r Transporter und Vans. Ganz egal, ob Webdesign oder -entwicklung, digitales Kampagnenmanagement oder CRM &#8211; die Marke liegt uns sehr und wir freuen uns &#252;ber viele spannende und zukunftsweisende Projekte. Aber auch im Immobiliensektor haben wir uns zu Experten entwickelt. Von Markenbildung bis hin zu innovativen Vertriebsstrategien unterst&#252;tzen wir unsere Kunden und verschaffen ihnen immer den bestm&#246;glichen Auftritt.&#xa;&#xa;Fernab von Automotive und Real Estate freuen wir uns sehr &#252;ber die &#xa;Zusammenarbeit mit dem Bistum Aachen und dem Nell-Breuning-Haus. Nach zwei gewonnenen Ausschreibungen erarbeiten wir umfangreiche Kommunikationsstrategien, die sich um die Themen &#8222;Bek&#228;mpfung von Sexismus in Unternehmen&#8220; und &#8222;Pr&#228;vention von Radikalisierung bei der Bundeswehr&#8220; drehen. Eine sehr anspruchsvolle und tolle Aufgabe!"/>';
+			panorama+='      <hotspot skinid="ht_url" tilt="-26.18" pan="-272.59" url="https://www.basis-station.de/pdf" title="PDF" target="_blank" id="Point03" description="https://www.basis-station.de/pdf"/>';
+			panorama+='      <hotspot skinid="ht_video_file" tilt="-7.45" pan="-266.37" url="media/REEL-Comb-2.mp4" title="Showreel" target="" id="Showreel" description=""/>';
+			panorama+='      <hotspot skinid="ht_chat" tilt="-25.57" pan="-255.5" url="" title="Chat" target="_blank" id="Point04" description=""/>';
+			panorama+='    </hotspots>';
+			panorama+='    <media>';
+			panorama+='      <lensflare alpha="80.000" type="2" tilt="39.580" pan="-13.200" color="0xffffff" blinding="50.000" id="Lensflare01"/>';
+			panorama+='    </media>';
+			panorama+='    <transition type="crossdissolve" zoomoutpause="1" zoomin="0" blendtime="1" zoomspeed="1" enabled="1" softedge="0" blendcolor="0x000000" zoomfov="20" zoomout="0"/>';
+			panorama+='    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>';
+			panorama+='    <control lockedkeyboard="0" lockedwheel="0" contextfullscreen="1" invertcontrol="1" simulatemass="1" contextprojections="0" rubberband="1" speedwheel="1" lockedkeyboardzoom="0" invertwheel="0" dblclickfullscreen="0" hideabout="1" lockedmouse="0" sensitivity="8"/>';
+			panorama+='  </panorama>';
+			panorama+='  <masternode>';
+			panorama+='    <userdata comment="" tags="" heading="0" nodeid="master" author="" longitude="" info="" copyright="" source="" customnodeid="" title="" latitude="" datetime="" description=""/>';
+			panorama+='  </masternode>';
+			panorama+='</tour>';
+			panorama+='';
+			pano.readConfigString(panorama);
+		</script>
+		<noscript>
+			<p><b>Please enable Javascript!</b></p>
+		</noscript>
+<!-- - - - - - - 8<- - - - - - cut here - - - - - 8<- - - - - - - --> 
+		<!-- Hack needed to hide the url bar on iOS 9, iPhone 5s --> 
+		<div style="width:1px;height:1px;"></div>
+	</body>
+</html>
